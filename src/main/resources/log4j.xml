@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+    <!-- 业务日志，生产环境使用。 -->
+    <appender name="log_file" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Threshold" value="INFO"/>
+        <param name="File" value="/log/download-file/download-file.log"/>
+        <param name="Append" value="true"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd-HH"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %-5p %-40.40c -%m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 控制台日志，开发阶段使用 -->
+    <appender name="log_console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Threshold" value="INFO"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d [%t] %-5p %-40.40c -%m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
+    <logger name="org.springframework" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="log_console"/>
+    </logger>
+
+    <!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制 -->
+    <logger name="org.apache" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="log_console"/>
+    </logger>
+
+    <!-- 默认业务日志 -->
+    <root>
+        <appender-ref ref="log_file"/>
+        <appender-ref ref="log_console"/>
+    </root>
+</log4j:configuration>
