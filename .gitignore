@@ -1,0 +1,22 @@
+#folder
+target/
+target/*
+#fixed file
+.class
+.exe
+*/*.log
+*/*.*.log
+.prefs
+.project
+.classpath
+.metadata
+.settings
+.DS_Store
+Thumbs.db
+*.iml
+*.ipr
+*.iws
+*.tar.gz
+.idea
+/test/*
+web/src/test/resources/
